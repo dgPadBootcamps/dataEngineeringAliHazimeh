@@ -1,7 +1,6 @@
 from data_collection import twitter
 import json
-from datetime import date, timedelta
-
+from datetime import date
 
 
 def search(query):
@@ -10,7 +9,7 @@ def search(query):
     tweets = []
 
     for i, tweet in enumerate(scraper.get_items()):
-        if i > 100:
+        if i > 10:
             break
         # data retrieve from tweet_to_tweet class in the twitter.py file
         print(tweet.id)
@@ -45,8 +44,10 @@ def search(query):
     return tweets
 
 
-def save_json(tweets):
+def save_json(tweets, today):
     # to write all fetched data into json file tweets.json
-    file_storage = "D:\dgPad\Twitter_Application\data_storage\Twitter-Lebanon-" + str(today) + ".json"
+    file_storage = "D:\dgPad\data_storage\Twitter-Lebanon-" + str(today) + ".json"
     with open(file_storage, "w", encoding="utf-8") as file:
         json.dump(tweets, file, ensure_ascii=False, indent=4)
+    print("Great :)")
+
