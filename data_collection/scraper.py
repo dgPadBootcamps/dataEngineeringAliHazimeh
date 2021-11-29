@@ -1,10 +1,7 @@
-import twitter
+from data_collection import twitter
 import json
 from datetime import date, timedelta
 
-today = date.today()
-yesterday = today - timedelta(days=1)
-qr = "(lebanon OR لبنان) since:" + str(yesterday) + " until:" + str(today)
 
 
 def search(query):
@@ -13,7 +10,7 @@ def search(query):
     tweets = []
 
     for i, tweet in enumerate(scraper.get_items()):
-        if i > 5:
+        if i > 100:
             break
         # data retrieve from tweet_to_tweet class in the twitter.py file
         print(tweet.id)
