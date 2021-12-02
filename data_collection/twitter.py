@@ -455,7 +455,7 @@ class TwitterAPIScraper(base.Scraper):
             kwargs['place'] = Place(tweet['place']['full_name'], tweet['place']['name'], tweet['place']['place_type'],
                                     tweet['place']['country'], tweet['place']['country_code'])
             if 'coordinates' not in kwargs and tweet['place']['bounding_box'] and (
-            coords := tweet['place']['bounding_box']['coordinates']) and coords[0] and len(coords[0][0]) == 2:
+                    coords := tweet['place']['bounding_box']['coordinates']) and coords[0] and len(coords[0][0]) == 2:
                 # Take the first (longitude, latitude) couple of the "place square"
                 kwargs['coordinates'] = Coordinates(coords[0][0][0], coords[0][0][1])
         if tweet['entities'].get('hashtags'):
@@ -669,7 +669,7 @@ class TwitterUserScraper(TwitterSearchScraper):
     @staticmethod
     def is_valid_username(s):
         return (1 <= len(s) <= 15 and s.strip(string.ascii_letters + string.digits + '_') == '') or (
-                    s and s.strip(string.digits) == '')
+                s and s.strip(string.digits) == '')
 
     @classmethod
     def setup_parser(cls, subparser):
